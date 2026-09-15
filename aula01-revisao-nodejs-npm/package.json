@@ -1,5 +1,5 @@
 {
-  "name": "aula01-revisao-nodejs-npm",
+  "name": "aula-modulo-commonsjs-esm",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Paulo Ricardo alves da conceição",
+  "author": "",
   "license": "ISC",
   "type": "commonjs"
 }
