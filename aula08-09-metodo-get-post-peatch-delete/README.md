@@ -1,123 +1,98 @@
-🎟️ API de Convidados
+# 🚀 API de Convidados — NestJS
 
-API REST desenvolvida com NestJS e TypeScript para gerenciamento de convidados.
+Projeto desenvolvido durante as aulas de desenvolvimento **Back-End**, utilizando **NestJS, TypeScript e Node.js**.
 
-O projeto foi desenvolvido com o objetivo de praticar a criação de APIs REST, utilizando os principais métodos HTTP:
+A aplicação consiste em uma API REST para gerenciamento de convidados, permitindo realizar operações de consulta, criação, atualização e exclusão.
 
-GET — consultar dados
+## 🛠️ Tecnologias
 
-POST — cadastrar dados
+- Node.js
+- NestJS
+- TypeScript
+- Insomnia
+- Git
+- GitHub
+- npm
 
-PATCH — atualizar dados
+## 🎯 Objetivo
 
-DELETE — remover dados
+Praticar os principais conceitos de desenvolvimento de APIs com NestJS, incluindo:
 
-🎯 Objetivo do projeto
+- Controllers
+- Services
+- DTOs
+- Injeção de dependência
+- Rotas
+- Métodos HTTP
+- Parâmetros de rota
+- Body das requisições
+- Status HTTP
 
-O objetivo desta aplicação é desenvolver uma API simples para gerenciamento de convidados, permitindo:
+## 📁 Estrutura do projeto
 
-Listar convidados cadastrados;
+```text
+aula08-09-metodo-get-post-peatch-delete/
+│
+├── src/
+│   ├── app.controller.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   ├── convidados.controller.ts
+│   ├── convidados.service.ts
+│   ├── criar.convidado.dto.ts
+│   └── main.ts
+│
+├── test/
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── README.md
+```
 
-Cadastrar novos convidados;
+## 🚀 Instalação
 
-Atualizar a idade de um convidado;
+Instale as dependências:
 
-Remover um convidado pelo ID;
-
-Verificar o status da aplicação;
-
-Testar as rotas utilizando o Insomnia.
-
-O projeto também permite praticar a organização de uma aplicação NestJS utilizando Controller, Service e DTO.
-
-🛠️ Tecnologias utilizadas
-
-Tecnologia
-
-Utilização
-
-🟢 Node.js
-
-Ambiente de execução
-
-🟣 NestJS
-
-Framework para desenvolvimento da API
-
-🔷 TypeScript
-
-Linguagem de programação
-
-🧪 Insomnia
-
-Testes das requisições HTTP
-
-📦 npm
-
-Gerenciamento de dependências
-
-⚙️ Instalação
-
-1. Clonar ou acessar o projeto
-
-Entre no diretório do projeto pelo terminal:
-
-cd aula08-09-metodo-get-post-peatch-delete
-
-2. Instalar as dependências
-
+```bash
 npm install
+```
 
-3. Executar a aplicação
+Execute o projeto em modo desenvolvimento:
 
-Para executar em modo de desenvolvimento:
-
+```bash
 npm run start:dev
+```
 
-Quando a aplicação iniciar corretamente, o NestJS exibirá uma mensagem semelhante a:
+A aplicação ficará disponível em:
 
-[NestApplication] Nest application successfully started
-
-A API ficará disponível em:
-
+```text
 http://localhost:3000
+```
 
-🌐 Endpoints da API
+## 🌐 Endpoints
 
-💚 1. Verificar o status da aplicação
+### Verificar status
 
+```http
 GET /status
+```
 
-Essa rota permite verificar se a aplicação está funcionando.
+Exemplo:
 
-URL:
+```text
+http://localhost:3000/status
+```
 
-GET http://localhost:3000/status
+### Listar convidados
 
-Exemplo no Insomnia
-
-Method: GET
-URL: http://localhost:3000/status
-
-👥 Rotas de convidados
-
-📋 2. Listar convidados
-
+```http
 GET /convidados
+```
 
-Retorna todos os convidados cadastrados.
+Exemplo de resposta:
 
-URL:
-
-GET http://localhost:3000/convidados
-
-Exemplo no Insomnia
-
-Method: GET
-URL: http://localhost:3000/convidados
-
-Exemplo de resposta
-
+```json
 [
   {
     "id": 1,
@@ -128,319 +103,145 @@ Exemplo de resposta
     "id": 2,
     "nome": "Bruno",
     "idade": 30
-  },
-  {
-    "id": 3,
-    "nome": "Carlos",
-    "idade": 28
   }
 ]
+```
 
-➕ 3. Cadastrar convidado
+### Criar convidado
 
+```http
 POST /convidados
+```
 
-Cria um novo convidado.
+Body:
 
-URL:
-
-POST http://localhost:3000/convidados
-
-Configuração no Insomnia
-
-Selecione:
-
-Method: POST
-URL: http://localhost:3000/convidados
-
-Em Body, selecione:
-
-JSON
-
-Envie:
-
+```json
 {
-  "nome": "João",
-  "idade": 25
+  "nome": "Paulo",
+  "idade": 35
 }
+```
 
-Exemplo de resposta
+### Atualizar convidado
 
-{
-  "mensagem": "Convidado João adicionado com sucesso!",
-  "dados": {
-    "nome": "João",
-    "idade": 25
-  }
-}
-
-✏️ 4. Atualizar idade do convidado
-
+```http
 PATCH /convidados/:id
-
-Atualiza a idade de um convidado utilizando seu ID.
-
-URL de exemplo:
-
-PATCH http://localhost:3000/convidados/1
-
-Configuração no Insomnia
-
-Method: PATCH
-URL: http://localhost:3000/convidados/1
-
-Em Body → JSON:
-
-{
-  "idade": 26
-}
-
-Nesse exemplo, a idade do convidado de ID 1 será atualizada para 26.
-
-🗑️ 5. Remover convidado
-
-DELETE /convidados/:id
-
-Remove um convidado utilizando seu ID.
-
-URL de exemplo:
-
-DELETE http://localhost:3000/convidados/1
-
-Configuração no Insomnia
-
-Method: DELETE
-URL: http://localhost:3000/convidados/1
-
-Ao realizar a operação, o sistema registra no console:
-
-[ADMINISTRADOR] Convidado com ID 1 removido com sucesso!
-
-Importante: a rota correta é /convidados, com s no final.
-
-Exemplo correto:
-
-DELETE http://localhost:3000/convidados/1
-
-Exemplo incorreto:
-
-DELETE http://localhost:3000/convidado/1
-
-🧪 Testando a API com Insomnia
-
-O Insomnia foi utilizado para testar todas as rotas da aplicação.
-
-Fluxo recomendado de testes
-
-1️⃣ Listar convidados
-
-GET http://localhost:3000/convidados
-
-Verifique os IDs disponíveis.
-
-2️⃣ Criar um convidado
-
-POST http://localhost:3000/convidados
-
-Body:
-
-{
-  "nome": "Maria",
-  "idade": 22
-}
-
-3️⃣ Atualizar a idade
-
-Utilize um ID existente:
-
-PATCH http://localhost:3000/convidados/1
-
-Body:
-
-{
-  "idade": 23
-}
-
-4️⃣ Remover o convidado
-
-DELETE http://localhost:3000/convidados/1
-
-5️⃣ Conferir novamente
-
-GET http://localhost:3000/convidados
-
-Dessa forma é possível verificar se o convidado foi removido.
-
-📁 Estrutura do projeto
-
-A estrutura principal da aplicação é organizada da seguinte maneira:
-
-aula08-09-metodo-get-post-peatch-delete/
-│
-├── src/
-│   ├── app.controller.ts
-│   ├── app.module.ts
-│   ├── app.service.ts
-│   │
-│   ├── convidados.controller.ts
-│   ├── convidados.service.ts
-│   └── criar.convidado.dto.ts
-│
-├── package.json
-├── package-lock.json
-├── tsconfig.json
-└── README.md
-
-🧩 Organização da aplicação
-
-Controller
-
-O Controller é responsável por receber as requisições HTTP e direcioná-las para os métodos correspondentes.
-
-O ConvidadosController possui:
-
-GET     /convidados
-POST    /convidados
-PATCH   /convidados/:id
-DELETE  /convidados/:id
-
-Service
-
-O Service concentra a lógica responsável pelo gerenciamento dos convidados.
-
-O ConvidadosService possui métodos como:
-
-listarConvidados()
-encontrarConvidado()
-atualizarIdade()
-removerConvidadoLista()
-
-DTO
-
-O CreateConvidadoDto representa os dados recebidos para criação de um novo convidado.
+```
 
 Exemplo:
 
+```text
+PATCH http://localhost:3000/convidados/1
+```
+
+Body:
+
+```json
 {
-  "nome": "João",
-  "idade": 25
+  "idade": 30
 }
+```
 
-📚 Resumo das rotas
+### Remover convidado
 
-Método
+```http
+DELETE /convidados/:id
+```
 
-Endpoint
+Exemplo:
 
-Função
+```text
+DELETE http://localhost:3000/convidados/1
+```
 
-🟢 GET
+A exclusão utiliza o status:
 
-/status
+```text
+204 No Content
+```
 
-Verifica o status da API
+## 🧪 Testes com Insomnia
 
-🟢 GET
+As rotas da API podem ser testadas utilizando o **Insomnia**.
 
-/convidados
+### GET
 
-Lista os convidados
-
-🔵 POST
-
-/convidados
-
-Cadastra um convidado
-
-🟡 PATCH
-
-/convidados/:id
-
-Atualiza a idade
-
-🔴 DELETE
-
-/convidados/:id
-
-Remove um convidado
-
-📌 Exemplos rápidos
-
-GET
-
+```text
 GET http://localhost:3000/convidados
+```
 
-POST
+### POST
 
+```text
 POST http://localhost:3000/convidados
-Content-Type: application/json
+```
 
+Body:
+
+```json
 {
-  "nome": "Carlos",
+  "nome": "Maria",
   "idade": 28
 }
+```
 
-PATCH
+### PATCH
 
+```text
 PATCH http://localhost:3000/convidados/1
-Content-Type: application/json
+```
 
+Body:
+
+```json
 {
   "idade": 29
 }
+```
 
-DELETE
+### DELETE
 
+```text
 DELETE http://localhost:3000/convidados/1
+```
 
-✅ Funcionalidades implementadas
+## 📚 Conceitos praticados
 
-Configuração inicial do NestJS
+Durante o desenvolvimento foram praticados:
 
-Rota de status da aplicação
+- Criação de API REST
+- NestJS
+- TypeScript
+- Controllers
+- Services
+- DTOs
+- GET, POST, PATCH e DELETE
+- Rotas com parâmetros
+- Requisições JSON
+- Status HTTP
+- Testes com Insomnia
+- Versionamento com Git e GitHub
 
-Listagem de convidados
+## 🔄 Fluxo da aplicação
 
-Cadastro de convidados
+```text
+Cliente
+   ↓
+Controller
+   ↓
+Service
+   ↓
+Dados
+   ↓
+Resposta HTTP
+   ↓
+Cliente
+```
 
-Atualização da idade
+## 🎓 Projeto acadêmico
 
-Remoção de convidados
+Projeto desenvolvido para fins de estudo e aprendizado em **Desenvolvimento Back-End**, utilizando NestJS e TypeScript.
 
-Utilização dos métodos HTTP GET, POST, PATCH e DELETE
+**Autor:** Paulo Ricardo Alves da Conceição
 
-Testes utilizando Insomnia
-
-Organização utilizando Controller, Service e DTO
-
-🎓 Objetivos de aprendizagem
-
-Com este projeto foi possível praticar:
-
-Criação de uma API REST com NestJS;
-
-Criação e configuração de Controllers;
-
-Criação de Services;
-
-Utilização de DTOs;
-
-Recebimento de parâmetros com @Param();
-
-Recebimento de dados com @Body();
-
-Criação de diferentes métodos HTTP;
-
-Utilização de códigos de status HTTP;
-
-Testes de API utilizando o Insomnia;
-
-Organização de um projeto Back-end.
-
-👨‍💻 Projeto acadêmico
-
-Projeto desenvolvido para fins de estudo e prática de desenvolvimento Back-end com NestJS e TypeScript.
-
-⭐ API de Convidados
-
-NestJS • TypeScript • REST API • Insomnia
+**Tecnologias:** Node.js • NestJS • TypeScript • Insomnia • Git • GitHub
