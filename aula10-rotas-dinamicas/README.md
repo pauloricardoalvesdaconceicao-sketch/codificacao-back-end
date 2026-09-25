@@ -1,118 +1,225 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+Aula 10 — Rotas Dinâmicas com NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Projeto desenvolvido durante o curso de desenvolvimento Back-End com NestJS, com o objetivo de praticar a criação de rotas dinâmicas, parâmetros de URL, validação e injeção de dependências.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+📚 Sobre o projeto
 
-## Description
+Nesta aula foi desenvolvida uma API simples para consulta de jogos utilizando NestJS.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A aplicação permite buscar um jogo pelo seu ID através de uma rota dinâmica:
 
-## Project setup
+GET /jogos/:id
 
-```bash
-$ npm install
-```
 
-## Compile and run the project
+O projeto também demonstra como utilizar:
 
-```bash
-# development
-$ npm run start
+Controllers
 
-# watch mode
-$ npm run start:dev
+Services
 
-# production mode
-$ npm run start:prod
-```
+Injeção de dependências
 
-## Run tests
+Rotas dinâmicas
 
-```bash
-# unit tests
-$ npm run test
+@Param()
 
-# e2e tests
-$ npm run test:e2e
+ParseIntPipe
 
-# test coverage
-$ npm run test:cov
-```
+NotFoundException
 
-## Deployment
+HTTP Status 404
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Organização básica de uma API NestJS
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+🛠️ Tecnologias utilizadas
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Node.js
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+NestJS
 
-## Observability
+TypeScript
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+npm
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+Git
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
+📁 Estrutura do projeto
+aula10-rotas-dinamicas/
+├── src/
+│   ├── app.controller.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   ├── jogos.controller.ts
+│   ├── jogos.service.ts
+│   └── main.ts
+├── package.json
+├── tsconfig.json
+└── README.md
 
-This project is already instrumented. Create a free account at [observe.nestjs.com](https://observe.nestjs.com), add an application, and paste the generated app key and secret into the `ObserveModule.forRoot()` call in `src/app.module.ts`.
+🎮 Dados disponíveis
 
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
+A API possui alguns jogos cadastrados em memória:
 
-## Resources
+ID	Jogo	Estúdio
+1	Minecraft	Mojang Studios
+2	The Legend of Zelda: Ocarina of Time	Nintendo
+3	Grand Theft Auto V	Rockstar North
+4	Elden Ring	FromSoftware
+5	God of War	Santa Monica Studios
+🚀 Como executar o projeto
 
-Check out a few resources that may come in handy when working with NestJS:
+Clone o repositório:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observe](https://observe.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+git clone <URL_DO_REPOSITORIO>
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Entre na pasta do projeto:
 
-## Stay in touch
+cd aula10-rotas-dinamicas
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+Instale as dependências:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+npm install
+
+
+Inicie o projeto em modo de desenvolvimento:
+
+npm run start:dev
+
+
+Por padrão, a aplicação estará disponível em:
+
+http://localhost:3000
+
+🔎 Testando a rota dinâmica
+
+Para buscar o jogo de ID 1:
+
+GET http://localhost:3000/jogos/1
+
+
+Resposta:
+
+{
+  "id": 1,
+  "titulo": "Minecraft",
+  "estudio": "Mojang Studios"
+}
+
+
+Outro exemplo:
+
+GET http://localhost:3000/jogos/4
+
+
+Resposta:
+
+{
+  "id": 4,
+  "titulo": "Elden Ring",
+  "estudio": "FromSoftware"
+}
+
+❌ Jogo não encontrado
+
+Quando um ID que não existe é informado, o serviço lança uma NotFoundException.
+
+Exemplo:
+
+GET http://localhost:3000/jogos/99
+
+
+A API retorna:
+
+{
+  "statusCode": 404,
+  "message": "Jogo com ID 99 não localizado em nosso estoque",
+  "error": "Not Found"
+}
+
+🧩 Rota dinâmica
+
+A rota principal da aplicação é definida no controller:
+
+@Get(':id')
+buscarPorId(@Param('id', ParseIntPipe) id: number) {
+  return this.jogosService.buscarPorId(id);
+}
+
+
+O trecho:
+
+:id
+
+
+representa um parâmetro dinâmico da URL.
+
+Por exemplo:
+
+/jogos/1
+/jogos/2
+/jogos/3
+
+
+O valor é capturado através de:
+
+@Param('id', ParseIntPipe)
+
+
+O ParseIntPipe converte o valor recebido na URL para um número inteiro.
+
+⚙️ Service
+
+A lógica de busca dos jogos fica no JogosService.
+
+buscarPorId(id: number) {
+  const jogo = this.jogos.find((j) => j.id === id);
+
+  if (!jogo) {
+    throw new NotFoundException(
+      `Jogo com ID ${id} não localizado em nosso estoque`,
+    );
+  }
+
+  return jogo;
+}
+
+
+Essa separação permite manter a responsabilidade de cada parte da aplicação organizada:
+
+Controller: recebe as requisições HTTP.
+
+Service: executa a lógica da aplicação.
+
+Module: organiza os componentes e suas dependências.
+
+📌 Conceitos praticados
+
+Durante esta aula foram praticados conceitos importantes do NestJS:
+
+Criação de Controllers.
+
+Criação de Services.
+
+Injeção de dependências.
+
+Rotas dinâmicas.
+
+Parâmetros de rota.
+
+ParseIntPipe.
+
+Tratamento de recursos não encontrados.
+
+NotFoundException.
+
+Organização de módulos.
+
+Execução da aplicação em modo de desenvolvimento.
+
+👨‍💻 Autor
+
+Paulo Conceição
+
+Projeto desenvolvido para fins de estudo durante o curso de desenvolvimento Back-End com NestJS.
