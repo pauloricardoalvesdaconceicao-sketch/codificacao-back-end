@@ -1,0 +1,15 @@
+{
+    "nome":"Notebook ultrabook x1",
+    "categoria":"informática",
+    "preco": 4599.99,
+    "especificacoesTecnicas":{
+        "ram":"16GB",
+        "processador":"Intel core i7 14700HS",
+        "armazenamento":"1TB"
+    },
+    "tags":[
+        "Notebook",
+        "ultrabook",
+        "informática"
+    ]
+}

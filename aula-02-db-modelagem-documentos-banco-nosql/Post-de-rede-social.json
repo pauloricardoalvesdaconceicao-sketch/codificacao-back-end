@@ -1,0 +1,33 @@
+{
+    "texto": "hoje e um otimo dia para tomar um café",
+    "autor":"Paulo Ricardo ",
+    "data":"2026-08-01",
+    "curtidas":[
+        "Paulinho",
+        "arthur",
+        "breno",
+        "ale",
+        "gabs"
+    ],
+    "comentario":[
+        {
+        "autor":"gabriel",
+        "texto":"concordo",
+        "data":"2026-08-01"
+    },
+
+    {
+        "autor":"Paulinho",
+        "texto":"verdade",
+        "data":"2026-08-01"
+    },
+
+    {
+        "autor":"arthur",
+        "texto":"sem um bom café, o meu dia não começa",
+        "data":"2026-08-01"
+    }
+
+]
+
+}
