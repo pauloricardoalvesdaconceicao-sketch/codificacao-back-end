@@ -22,7 +22,7 @@ export class Aluno{
     matricula:string;
     
     @Prop({String})
-    curso:string[];
+    cursos:string[];
 }
 
 export const AlunoSchema = SchemaFactory.createForClass(Aluno);
