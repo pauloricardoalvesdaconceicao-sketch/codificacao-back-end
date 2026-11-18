@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException, ConflictException, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateAlunoDto } from '../dto/create-aluno-dto.js'; 
-import { UpdateAlunoDto } from '../dto/update-aluno-dto.js'; 
+import { CreateAlunoDto } from '../dto/create-aluno-dto.js';
+import { UpdateAlunoDto } from '../dto/update-aluno-dto.js';
 import { Aluno, AlunoDoc } from '../schemas/aluno.schema.js';
-import {MongoServerError } from 'mongodb';
+import { MongoServerError } from 'mongodb';
 
 @Injectable()
 export class AlunosService {
@@ -17,20 +17,20 @@ export class AlunosService {
     //! D - Delete (Apagar)
 
     async create(createAlunoDto: CreateAlunoDto): Promise<Aluno> {
-        try{
-             const createdAluno = new this.alunoModel(createAlunoDto);
-        return await createdAluno.save();
-        } catch(error: unknown){
-            if(
+
+        try {
+            const createdAluno = new this.alunoModel(createAlunoDto);
+            return await createdAluno.save();
+        } catch (error: unknown) {
+            if (
                 error instanceof MongoServerError
                 &&
                 error.code === 11000
             ){
-                throw new ConflictException('já existe um aluno cadrastado com essa matricula');
+                throw new ConflictException('Já existe um aluno cadastrado com essa matrícula');
             }
-            throw new InternalServerErrorException('Erro ao processar o cadastro do aluno');
+            throw new InternalServerErrorException('Erro ao Processar o cadastro do Aluno');
         }
-       
     }
 
     // async findAll(): Promise <Aluno[]> {
@@ -38,9 +38,16 @@ export class AlunosService {
     // }  
 
     //! Método para buscar todos os alunos com paginação
-    async findPagefilter(page: number, limit: number, nome?: string, curso?: string, orderBy?:string, orderDirection?:'asc' | 'desc') {
+    async findPagefilter(
+        page: number,
+        limit: number,
+        nome?: string,
+        curso?: string,
+        orderBy?: string,
+        orderDirection?: 'asc' | 'desc',
+        ) {
         const skip = (page - 1) * limit;
-        const filter: any = {};
+        const filter: any = {ativo: true};
         const sort: any = {};
 
         if (nome) {
@@ -50,13 +57,12 @@ export class AlunosService {
         }
 
         if (curso) {
-            filter.cursos = curso ;
+            filter.curso = curso ;
         }
         
         if (orderBy){
             sort[orderBy] = orderDirection === 'desc' ? -1: 1;
         }
-
 
         const [data, total] = await Promise.all([
             this.alunoModel.find(filter).sort(sort).skip(skip).limit(limit).exec(),
@@ -74,7 +80,8 @@ export class AlunosService {
     }
 
     async findOne(id: string): Promise <Aluno> {
-        const aluno = await this.alunoModel.findById(id).exec();
+        // const aluno = await this.alunoModel.findById(id).exec();
+        const aluno = await this.alunoModel.findOne({_id: id, ativo: true}).exec();
         if (!aluno) {
             throw new NotFoundException(`Aluno com ID ${id} não encontrado.`);
         }
@@ -91,10 +98,18 @@ export class AlunosService {
     }
 
     async remove(id: string): Promise <Aluno> {
-        const alunoRemovido = await this.alunoModel.findByIdAndDelete(id).exec();
+        const alunoRemovido = await this.alunoModel.findByIdAndUpdate(id, { ativo: false }, { new: true }).exec();
         if (!alunoRemovido) {
             throw new NotFoundException(`Aluno com ID ${id} não encontrado.`);
         }
         return alunoRemovido;
+    } //!DELETE
+
+    async restore(id: string): Promise <Aluno> {
+        const alunoRestaurado = await this.alunoModel.findByIdAndUpdate(id, { ativo: true }, { new: true }).exec();
+        if (!alunoRestaurado) {
+            throw new NotFoundException(`Aluno  não encontrado pelo ID ${id}`);
+        }
+        return alunoRestaurado;
     }
 }
